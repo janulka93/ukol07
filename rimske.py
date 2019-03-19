@@ -8,7 +8,40 @@ for prvek in rimske:
         print('Toto není římské písmeno! S tím ti nepomohu.')
         break
 
+seznamCisel = []
 for prvek in rimske:
     umisteni = pismena.index(prvek)
     prirazeni = prepis[umisteni]
-    print(prirazeni)
+    seznamCisel.append(prirazeni)
+print(seznamCisel)
+
+cislo = 0
+novy_seznam = []
+for prvek in seznamCisel:
+    cislo = prvek
+    if prvek >= cislo:
+        znamenko = '+'
+        novy_seznam.append(prvek)
+        novy_seznam.append(znamenko)
+
+        cislo = prvek
+    else:
+        znamenko = '-'
+        novy_seznam.append(prvek)
+        novy_seznam.append(znamenko)
+
+        cislo = prvek
+print(novy_seznam)
+
+
+
+
+
+
+def prevod(rimske):
+    '''Převede římskou číslici na arabskou. (snad)
+    '''
+#vstup
+#kontrola, zda je římská, pokud ne - konec
+#pak nějak přidat do seznamu
+#porovnávání a na jeho základě sčítání a odčítání
