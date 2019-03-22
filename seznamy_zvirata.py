@@ -1,14 +1,19 @@
 zvirata = ['pes', 'kočka', 'králík', 'had']
-for slovo in zvirata:
-    print(slovo)
+# for slovo in zvirata:
+#     print(slovo)
 
 def podPetPism(seznam):
     '''Funkce vrací jména ze seznamu, která jsou kratší než X písmen.
     '''
-    pocet = int(input('Zadej horní hranici počtu písmen ve slově: '))
+    odpoved = input('Zadej horní hranici počtu písmen ve slově: ')
+    try:
+        pocet = int(odpoved)
+    except ValueError:
+        print('Tohle není číslo. Defaultně nastavuji pětku!')
+        pocet = 5
     vysledek = []
     for slovo in seznam:
-        if len(slovo) < pocet:
+        if len(slovo) <= pocet:
             vysledek.append(slovo)
     return vysledek
 
@@ -20,18 +25,18 @@ def zacinaNa(seznam):
     '''
     pismeno = input('Zadej písmeno, na které mají slova ze seznamu začínat: ')
     vysledek = []
-    for slovo in seznam:
-        if slovo[0] == pismeno.lower():
-            vysledek.append(slovo)
+    if len(pismeno) == 1 :
+        for slovo in seznam:
+            if slovo[0] == pismeno.lower():
+                vysledek.append(slovo)
+        if vysledek:
+            print('Zvířata v seznamu na písmeno', pismeno, 'jsou:', vysledek)
         else:
-            break
-    if vysledek:
-        return vysledek
+            print('V seznamu se nevyskytuje žádné slovo začínající na písmeno:', pismeno.capitalize())
     else:
-        print('V seznamu se nevyskytuje žádné slovo začínající na písmeno:', pismeno.capitalize())
-
+        print('Toto není jedno písmeno! Nic se nedozvíš.')
 #pro ověření
-print(zacinaNa(zvirata))
+zacinaNa(zvirata)
 
 def jeVSeznamu(seznam):
     '''Funkce zjistí, zda je zadané slovo v seznamu zvířat.
@@ -63,6 +68,34 @@ def triSeznamy(seznamA, seznamB):
         if prvek not in seznamA:
             vysledekR2.append(prvek)
 
-    return vysledekS, vysledekR1, vysledekR2
+    print('sjednocení dvou seznamů:', vysledekS)
+    print('rozdíl první - druhá:', vysledekR1)
+    print('rozdíl druhá - první:', vysledekR2)
 
-print(triSeznamy(['kun', 'pes', 'ptak', 'liska'],['kun', 'kocka', 'vrabec', 'ptak']))
+zvirata2 =  ['kun', 'pes', 'ptak', 'kočka']
+triSeznamy(zvirata, zvirata2)
+
+def serad(seznam):
+    '''Funkce seřadí prvky daného seznamu podle abecedy.
+    '''
+    seznam.sort()
+    return seznam
+
+print('Zvířata seřazená podle abecedy:', serad(zvirata))
+
+zvirata.append('andulka')
+
+def seradKlicem(seznam):
+    '''Seřadí seznam podle klíče'''
+    seznamKlic = []
+    vysledek = []
+    for prvek in seznam:
+        ntice = [prvek[1:], prvek]
+        seznamKlic.append(ntice)
+    seznamKlic.sort()
+    for prvek in seznamKlic:
+        vysledek.append(prvek[1]) #print(seznamKlic)
+    return vysledek
+
+
+print(seradKlicem(zvirata))
