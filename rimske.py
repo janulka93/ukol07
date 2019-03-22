@@ -35,9 +35,6 @@ print(novy_seznam)
 
 
 
-
-
-
 def prevod(rimske):
     '''Převede římskou číslici na arabskou. (snad)
     '''
