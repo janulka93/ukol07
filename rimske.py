@@ -61,7 +61,6 @@ def prevod():
       #print(cislo)
 
 
-
     #print(rimske)
 
 
