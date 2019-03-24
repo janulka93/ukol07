@@ -8,13 +8,12 @@ def nakresli_mapu(souradnice, sirka, delka):
                 print('.', end=' ')
         print()
 
-def pohyb(souradnice, strana):
+def pohyb(souradnice, strana, delka, sirka):
     '''
     Funkce posouvá body dle zadané světové strany.
     '''
     i, j = souradnice[-1]
     posun = (i, j)
-
     if strana == 'v':
         posun = (i + 1, j)
     elif strana == 'j':
@@ -23,19 +22,31 @@ def pohyb(souradnice, strana):
         posun = (i - 1, j)
     elif strana == 's':
         posun = (i, j - 1)
-    # else:
-    #     print('Nemůžeš se posunout, zadej světovou stranu!')
-
-    souradnice.append(posun)
-    del souradnice[0]
+    if posun in souradnice:
+        print('Máme tady sebevražedného hada! \nGame Over!')
+        return False
+    elif i not in range(0, sirka-1) or j not in range(0, delka-1):
+        print('Neprojdeš dál! \nGame Over!')
+        return False
+    else:
+        souradnice.append(posun)
+        del souradnice[0]
+        print(souradnice)
 
 souradnice = [(0,0), (1,0), (2,0)]
-#nakresli_mapu(souradnice,10,4 )
-def had():
-    while True:
-        strana = input('Zadej světovou stranu (z, j, s, v): ')
-        pohyb(souradnice, strana)
-        #print(souradnice)
-        nakresli_mapu(souradnice, 10, 10)
 
+def had():
+    '''
+    Hra had.
+    '''
+    delka = int(input('Zadej délku hracího pole: '))
+    sirka = int(input('Zadej šířku hracího pole: '))
+    nakresli_mapu(souradnice, delka, sirka)
+    while True:
+        # potrava(souradnice, delka, sirka, ovoce)
+        strana = input('Zadej světovou stranu (z, j, s, v): ')
+        if pohyb(souradnice, strana, sirka, delka) != False:
+            nakresli_mapu(souradnice, delka, sirka)
+        else:
+            break
 had()
