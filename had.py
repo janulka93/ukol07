@@ -1,3 +1,5 @@
+souradnice = [(0,0), (1,0), (2,0)] #počáteční souřadnice hada
+
 def nakresli_mapu(souradnice, sirka, delka):
     '''Vytvoří mapu.'''
     for j in range(delka):
@@ -31,9 +33,6 @@ def pohyb(souradnice, strana, delka, sirka):
     else:
         souradnice.append(posun)
         del souradnice[0]
-        print(souradnice)
-
-souradnice = [(0,0), (1,0), (2,0)]
 
 def had():
     '''
@@ -43,7 +42,6 @@ def had():
     sirka = int(input('Zadej šířku hracího pole: '))
     nakresli_mapu(souradnice, delka, sirka)
     while True:
-        # potrava(souradnice, delka, sirka, ovoce)
         strana = input('Zadej světovou stranu (z, j, s, v): ')
         if pohyb(souradnice, strana, sirka, delka) != False:
             nakresli_mapu(souradnice, delka, sirka)
