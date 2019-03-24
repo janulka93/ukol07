@@ -32,5 +32,5 @@ def obratSloky(text):
     basen = '\n\n'.join(radky)
     return basen
 
-print('\nA BÁSEŇ S OBRÁCENÝM POŘADÍM SLOK:\n')
+print('\nA BÁSEŇ S OBRÁCENÝM POŘADÍM SLOK: \n')
 print(obratSloky(obsah))
