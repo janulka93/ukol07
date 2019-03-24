@@ -94,8 +94,7 @@ def seradKlicem(seznam):
         seznamKlic.append(klic)
     seznamKlic.sort()
     for prvek in seznamKlic:
-        vysledek.append(prvek[1]) #print(seznamKlic)
+        vysledek.append(prvek[1])
     return vysledek
-
 
 print(seradKlicem(zvirata))
