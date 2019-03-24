@@ -1,60 +1,49 @@
+#odpovídající si seznamy základních arabských a římských číslic
 pismena = ['I', 'V', 'X', 'L', 'C', 'D', 'M']
 prepis = [1, 5, 10, 50, 100, 500, 1000]
-#kombinace = pismena, prepis
-#print(kombinace)
 
 def kontrolaVstupu(seznam, vstup):
     '''
-    Vstup a kontrola, zda je římské číslo.'''
+    Vstup a kontrola, zda je zadaná číslice římská.
+    '''
     for prvek in vstup:
         if prvek not in seznam:
             print('Toto není římské písmeno! S tím ti nepomohu.')
             return None
-        # if 'vv'.lower() or 'll'.lower() or 'dd'.lower() in seznam:
-        #     print('Toto není římské písmeno! S tím ti nepomohu.')
-        #     return None
     return vstup
 
 def prirazeni(pismena, prepis, rimske):
+    '''
+    Funkce vloží do nového pole hodnoty jednotlivých zadaných římských číslic.
+    '''
     seznamCisel = []
     for prvek in rimske:
-        umisteni = pismena.index(prvek)
-        prirazeni = prepis[umisteni]
+        umisteni = pismena.index(prvek) #jaké pořadí má písmeno v seznamu pismena
+        prirazeni = prepis[umisteni] #přiřazení z arabských číslic podle pořadí
         seznamCisel.append(prirazeni)
-    print(seznamCisel)
     return seznamCisel
 
-# Pro zápis dalších přirozených čísel platí tato pravidla:
-
-# čísla zapsaná stejnými znaky vedle sebe se sčítají
-# jestliže je znak menšího čísla napsán za znakem většího čísla, pak se obě tato čísla sčítají
-# je-li znak většího čísla napsán za znakem menšího čísla, pak od většího se odečítá menší číslo
-# znaky I, X, C se mohou opakovat nejvýše třikrát; znaky V, L, D se v každém čísle vyskytují nejvýše jednou; znak M se může opakovat libovolněkrát
-
 def vypocet(seznam):
+    '''
+    Funkce prochází seznam s hodnotami a sčítá popř. odčítá je pro výsledek.
+    '''
     arabske = seznam[0]
     for i in range(len(seznam)-1):
         dvojice = [seznam[i], seznam[i+1]]
         if dvojice[0] >= dvojice[1]:
             arabske = arabske + dvojice[1]
         else:
-            arabske = arabske - dvojice[0]
+            arabske = arabske - 2*dvojice[0] + dvojice[1] #kombo výpočet podle papíru
     return arabske
 
 def prevod():
-    '''Převede římskou číslici na arabskou. (snad)
+    '''
+    Zeptá se uživatele na římskou číslici a vypíše ji arabskou.
     '''
     rimske = list(input('Zadej římskou číslici: ').upper())
     if kontrolaVstupu(pismena, rimske) != None:
         cisla = prirazeni(pismena, prepis, rimske)
-        print(cisla)
         cislo = vypocet(cisla)
         print(cislo)
 
 prevod()
-
-
-#vstup
-#kontrola, zda je římská, pokud ne - konec
-#pak nějak přidat do seznamu
-#porovnávání a na jeho základě sčítání a odčítání
