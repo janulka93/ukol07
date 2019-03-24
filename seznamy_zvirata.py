@@ -90,8 +90,8 @@ def seradKlicem(seznam):
     seznamKlic = []
     vysledek = []
     for prvek in seznam:
-        ntice = [prvek[1:], prvek]
-        seznamKlic.append(ntice)
+        klic = [prvek[1:], prvek]
+        seznamKlic.append(klic)
     seznamKlic.sort()
     for prvek in seznamKlic:
         vysledek.append(prvek[1]) #print(seznamKlic)
